@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Audio</title>
+</head>
+<body>
+    <audio id="background-audio" preload="auto" controls>
+        <source src="imagenes/audio.mpeg" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        // Verificar y restaurar el estado del audio
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('background-audio');
+            var isPlaying = localStorage.getItem('isPlaying') === 'true';
+
+            if (isPlaying) {
+                audio.play();
+            }
+
+            audio.addEventListener('play', function() {
+                localStorage.setItem('isPlaying', 'true');
+            });
+
+            audio.addEventListener('pause', function() {
+                localStorage.setItem('isPlaying', 'false');
+            });
+
+            // Reiniciar el audio cuando se acabe
+            audio.addEventListener('ended', function() {
+                this.currentTime = 0; // Reiniciar el audio
+                this.play(); // Reproducir el audio nuevamente
+            });
+        });
+    </script>
+</body>
+</html>
