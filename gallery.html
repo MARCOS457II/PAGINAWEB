@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Un Rincón Romántico</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilo general */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa; /* Color de fondo claro y suave */
+            color: #333;
+        }
+
+        /* Navegación personalizada */
+        .navbar-custom {
+            background-color: #e83e8c; /* Color rosa suave */
+            border-bottom: 3px solid #ff6f61; /* Rosa más intenso */
+        }
+
+        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
+            color: #fff;
+        }
+
+        .navbar-custom .nav-link:hover {
+            background-color: #ff6f61;
+            color: #fff;
+        }
+
+        /* Sección de galería */
+        .gallery-section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .gallery-section h2 {
+            font-size: 2.5em;
+            color: #e83e8c; /* Rosa suave */
+            margin-bottom: 30px;
+        }
+
+        .gallery-section .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            padding: 0;
+            margin-bottom: 30px; /* Separación vertical entre tarjetas */
+            transition: box-shadow 0.3s ease;
+        }
+
+        .gallery-section .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .gallery-section .card-body {
+            background-color: #f8f9fa;
+            padding: 15px;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .gallery-section .card-body:hover {
+            background-color: #e9ecef;
+        }
+
+        .gallery-section .card-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .gallery-section .card-text {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        /* Borde de fuego rosa animado */
+        .flame-border {
+            border: 5px solid transparent;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.6) inset; /* Borde de fuego rosado */
+        }
+
+        .flame-border::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            border: 5px solid transparent;
+            border-image: linear-gradient(135deg, #ff6f61, #e83e8c);
+            border-image-slice: 1;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Mensaje al pasar el cursor sobre la imagen */
+        .card-body::after {
+            content: "¡Guapa!";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: #e83e8c;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 2;
+            white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semitransparente */
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .card:hover .card-body::after {
+            opacity: 1;
+        }
+
+        /* Estilo para diferentes mensajes */
+        .card[data-message="guapa"] .card-body::after {
+            content: "¡Guapa!";
+        }
+
+        .card[data-message="hermosa"] .card-body::after {
+            content: "Hermosa";
+        }
+
+        .card[data-message="preciosa"] .card-body::after {
+            content: "Preciosa";
+        }
+
+        .card[data-message="lindota"] .card-body::after {
+            content: "Lindota";
+        }
+
+        .card[data-message="bonita"] .card-body::after {
+            content: "Bonita";
+        }
+
+        .card[data-message="reeee preciosa"] .card-body::after {
+            content: "Reeee preciosa";
+        }
+
+        /* Espaciado entre columnas */
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col-md-4 {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        /* Asegurarse de que las tarjetas tienen el mismo tamaño */
+        .card {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="index.html">Inicio</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="gallery.html">Galería</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="phrases.html">Frases Románticas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sección de galería -->
+    <section class="gallery-section">
+        <h2>Galería de Mi Amor</h2>
+        <div class="container">
+            <div class="row">
+                <!-- Foto 1 -->
+                <div class="col-md-4">
+                    <div class="card flame-border" data-message="guapa">
+                        <img src="imagenes/foto1.jpeg" alt="Foto 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Eres increíble</h5>
+                            <p class="card-text">Cada vez que veo esta foto, recuerdo lo hermosa que eres y cómo iluminas mi vida.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Foto 2 -->
+                <div class="col-md-4">
+                    <div class="card flame-border" data-message="hermosa">
+                        <img src="imagenes/foto2.jpeg" alt="Foto 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Tu sonrisa ilumina todo</h5>
+                            <p class="card-text">Tu sonrisa es mi mayor alegría, y esta foto capta perfectamente tu belleza.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Foto 3 -->
+                <div class="col-md-4">
+                    <div class="card flame-border" data-message="preciosa">
+                        <img src="imagenes/foto3.jpeg" alt="Foto 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Belleza pura</h5>
+                            <p class="card-text">Eres simplemente perfecta, y cada foto tuya me recuerda lo especial que eres para mí.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Foto 4 -->
+                <div class="col-md-4">
+                    <div class="card flame-border" data-message="lindota">
+                        <img src="imagenes/foto4.jpeg" alt="Foto 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Siempre radiante</h5>
+                            <p class="card-text">No hay palabras suficientes para describir lo radiante que te ves en esta foto.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Foto 5 -->
+                <div class="col-md-4">
+                    <div class="card flame-border" data-message="bonita">
+                        <img src="imagenes/foto5.jpeg" alt="Foto 5">
+                        <div class="card-body">
+                            <h5 class="card-title">Hermosa en cada ángulo</h5>
+                            <p class="card-text">Cada ángulo de esta foto muestra lo hermosa y única que eres para mí.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Foto 6 -->
+                <div class="col-md-4">
+                    <div class="card flame-border" data-message="reeee preciosa">
+                        <img src="imagenes/foto6.jpeg" alt="Foto 6">
+                        <div class="card-body">
+                            <h5 class="card-title">Tu belleza es única</h5>
+                            <p class="card-text">Nunca dejo de asombrarme por tu belleza y encanto en cada foto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
